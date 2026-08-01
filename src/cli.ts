@@ -3,7 +3,7 @@ import process from 'node:process';
 import {render} from 'ink';
 import React from 'react';
 import {App} from './ui.js';
-import {closeAutomationSessions, closeSession, snapshotChromeSessions} from './processes.js';
+import {closeAutomationSessions, closeSession, mergeSessionWindows, snapshotChromeSessions} from './processes.js';
 import {formatTable} from './format.js';
 
 function printHelp(): void {
@@ -13,6 +13,7 @@ function printHelp(): void {
   chrome-session                 打开交互式 TUI
   chrome-session list [--json]   列出当前 Chrome 主会话
   chrome-session inspect <pid>   查看一个会话的详细信息
+  chrome-session merge <pid>     将可用会话的窗口合并到第一个窗口
   chrome-session close --all     关闭自动化/Headless 会话
   chrome-session close <pid>     关闭指定的自动化/Headless 会话
 
@@ -46,7 +47,7 @@ async function runCli(args: string[]): Promise<void> {
     if (rest.includes('--json')) {
       console.log(JSON.stringify(sessions, null, 2));
     } else {
-      console.log(formatTable(sessions));
+      console.log(formatTable(sessions, process.stdout.columns ?? 100));
     }
     return;
   }
@@ -71,6 +72,14 @@ async function runCli(args: string[]): Promise<void> {
     if (!session) throw new Error(`找不到会话：${target ?? '(缺少 PID)'}`);
     const result = await closeSession(session, {force});
     console.log(`已处理 ${session.label} PID ${session.pid}；发送信号给 ${result.signaledPids.length} 个进程${force ? `，强制信号 ${result.forceSignaledPids.length} 个` : ''}。`);
+    return;
+  }
+
+  if (command === 'merge') {
+    const session = findSession(sessions, rest[0]);
+    if (!session) throw new Error(`找不到会话：${rest[0] ?? '(缺少 PID)'}`);
+    const stats = await mergeSessionWindows(session);
+    console.log(`已将 PID ${session.pid} 的窗口合并到第一个窗口；现在有 ${stats.windowCount ?? 0} 个窗口、${stats.tabCount ?? 0} 个 Tab。`);
     return;
   }
 

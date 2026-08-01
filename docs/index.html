@@ -40,15 +40,16 @@
       </div>
       <div class="screen"><img src="./screenshot.svg" alt="Chrome Session TUI 终端界面截图"></div>
       <section class="grid" aria-label="功能">
-        <article class="card"><strong>聚合查看</strong><p>将 Renderer、GPU、Utility 等子进程归入对应 Chrome 会话。</p></article>
+        <article class="card"><strong>窗口与 Tab</strong><p>为可读取的会话显示窗口、Tab 数量，并将子进程聚合到所属 Chrome 会话。</p></article>
         <article class="card"><strong>识别来源</strong><p>识别 Headless、远程调试、Playwright、Puppeteer 和 DevTools 会话。</p></article>
-        <article class="card"><strong>安全清理</strong><p>普通 Chrome 默认保护；自动化会话支持单个或批量关闭。</p></article>
+        <article class="card"><strong>安全清理</strong><p>普通 Chrome 默认保护；支持窗口合并，以及自动化会话的单个或批量关闭。</p></article>
       </section>
       <section class="install">
         <strong>快速开始</strong>
         <pre>git clone https://github.com/holynova/chrome-session-tui.git
 cd chrome-session-tui
-pnpm install && pnpm --silent start</pre>
+pnpm install && pnpm --silent start
+# TUI 中按 m 可合并支持的窗口</pre>
       </section>
       <footer>Chrome Session TUI · <a href="https://github.com/holynova/chrome-session-tui">github.com/holynova/chrome-session-tui</a></footer>
     </main>
