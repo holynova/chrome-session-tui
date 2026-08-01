@@ -1,0 +1,40 @@
+{
+  "name": "chrome-session-tui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A small macOS TUI for inspecting and closing Chrome automation sessions.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holynova/chrome-session-tui.git"
+  },
+  "homepage": "https://holynova.github.io/chrome-session-tui/",
+  "bugs": {
+    "url": "https://github.com/holynova/chrome-session-tui/issues"
+  },
+  "bin": {
+    "chrome-session": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsup src/cli.ts --format esm --platform node --target node22 --sourcemap --clean --out-dir dist",
+    "start": "node dist/cli.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "ink": "^7.1.1",
+    "react": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.18",
+    "tsup": "^8.5.1",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

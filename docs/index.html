@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chrome Session TUI</title>
+    <meta name="description" content="macOS Chrome 自动化进程管理 TUI。">
+    <style>
+      :root { color-scheme: dark; --bg: #0d141b; --panel: #131e27; --line: #2d3c49; --text: #e7edf3; --muted: #8d9aaa; --cyan: #70d7ff; --yellow: #d1b266; --green: #8be28b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: radial-gradient(circle at 80% 0%, #203847 0, var(--bg) 42rem); color: var(--text); font: 16px/1.7 -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; }
+      main { width: min(1080px, calc(100% - 40px)); margin: 0 auto; padding: 72px 0 80px; }
+      .eyebrow { color: var(--cyan); font: 700 13px/1.2 SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; }
+      h1 { max-width: 760px; margin: 18px 0 12px; font-size: clamp(42px, 8vw, 82px); line-height: .98; letter-spacing: -.06em; }
+      .lead { max-width: 660px; color: var(--muted); font-size: 20px; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 54px; }
+      a.button { border: 1px solid var(--line); border-radius: 999px; padding: 9px 17px; color: var(--text); text-decoration: none; background: rgba(19, 30, 39, .8); }
+      a.button.primary { border-color: var(--cyan); color: #081116; background: var(--cyan); }
+      .screen { overflow: hidden; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 30px 90px rgba(0, 0, 0, .32); background: #101820; }
+      .screen img { display: block; width: 100%; height: auto; }
+      .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+      .card { padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: rgba(19, 30, 39, .78); }
+      .card strong { display: block; margin-bottom: 6px; color: var(--cyan); }
+      .card p { margin: 0; color: var(--muted); }
+      .install { margin-top: 56px; padding: 24px; border-left: 3px solid var(--yellow); background: var(--panel); }
+      pre { overflow: auto; margin: 14px 0 0; color: #dce8f0; font: 15px/1.8 SFMono-Regular, Menlo, monospace; }
+      footer { margin-top: 56px; color: var(--muted); font-size: 14px; }
+      footer a { color: var(--cyan); }
+      @media (max-width: 720px) { main { width: min(100% - 28px, 600px); padding-top: 42px; } .grid { grid-template-columns: 1fr; } .lead { font-size: 18px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">macOS · Node.js · Ink</div>
+      <h1>Chrome Session TUI</h1>
+      <p class="lead">给 AI 测试场景准备的小型终端工具：把 Chrome 主会话和子进程聚合展示，识别自动化实例，并安全清理遗留进程。</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/holynova/chrome-session-tui">查看 GitHub Repo</a>
+        <a class="button" href="https://github.com/holynova/chrome-session-tui#readme">阅读 README</a>
+      </div>
+      <div class="screen"><img src="./screenshot.svg" alt="Chrome Session TUI 终端界面截图"></div>
+      <section class="grid" aria-label="功能">
+        <article class="card"><strong>聚合查看</strong><p>将 Renderer、GPU、Utility 等子进程归入对应 Chrome 会话。</p></article>
+        <article class="card"><strong>识别来源</strong><p>识别 Headless、远程调试、Playwright、Puppeteer 和 DevTools 会话。</p></article>
+        <article class="card"><strong>安全清理</strong><p>普通 Chrome 默认保护；自动化会话支持单个或批量关闭。</p></article>
+      </section>
+      <section class="install">
+        <strong>快速开始</strong>
+        <pre>git clone https://github.com/holynova/chrome-session-tui.git
+cd chrome-session-tui
+pnpm install && pnpm --silent start</pre>
+      </section>
+      <footer>Chrome Session TUI · <a href="https://github.com/holynova/chrome-session-tui">github.com/holynova/chrome-session-tui</a></footer>
+    </main>
+  </body>
+</html>
