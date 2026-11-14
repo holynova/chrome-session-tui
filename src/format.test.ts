@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {formatSessionPrimaryRow, formatTableHeader, visibleWidth} from './format.js';
+import {formatDuration, formatSessionPrimaryRow, formatTable, formatTableHeader, visibleWidth} from './format.js';
 import type {ChromeSession} from './types.js';
 
 const session: ChromeSession = {
@@ -16,7 +16,7 @@ const session: ChromeSession = {
   windowCount: 2,
   tabCount: 11,
   windowInspection: 'cdp',
-  windowInspectionMessage: 'CDP · 127.0.0.1:9222',
+  windowInspectionMessage: 'CDP 127.0.0.1:9222',
   canMergeWindows: false,
   rssMb: 571.2,
   cpuPercent: 0.1,
@@ -37,5 +37,16 @@ describe('TUI formatting', () => {
     const width = 78;
     expect(visibleWidth(formatTableHeader(width))).toBe(width);
     expect(visibleWidth(formatSessionPrimaryRow(session, false, width))).toBe(width);
+  });
+
+  it('formats durations in Chinese units', () => {
+    expect(formatDuration(45)).toBe('45秒');
+    expect(formatDuration(90)).toBe('1分30秒');
+    expect(formatDuration(3723)).toBe('1小时2分钟');
+    expect(formatDuration(183845)).toBe('2天3小时');
+  });
+
+  it('guides the user when no Chrome session is found', () => {
+    expect(formatTable([])).toContain('请先打开 Chrome');
   });
 });
