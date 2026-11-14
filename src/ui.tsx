@@ -132,7 +132,10 @@ export function App(): React.ReactElement {
       <Text dimColor>只显示 Chrome 主会话；Renderer/GPU/Utility 子进程会合并到所属会话。</Text>
       <Box marginTop={1} flexDirection="column">
         {sessions.length === 0 ? (
-          <Text color="gray">没有发现 Chrome 主会话。</Text>
+          <Box flexDirection="column">
+            <Text color="gray">没有发现 Chrome 主会话。</Text>
+            <Text dimColor>请先打开 Chrome，或确认终端有权查看进程；按 r 刷新，按 q 退出。</Text>
+          </Box>
         ) : (
           <>
             <Text dimColor>{formatTableHeader(contentWidth)}</Text>
@@ -149,7 +152,7 @@ export function App(): React.ReactElement {
       </Box>
       {selectedSession && details && (
         <Box borderStyle="round" borderColor={colorFor(selectedSession)} marginTop={1} paddingX={1} flexDirection="column" width={contentWidth}>
-          <Text bold color={colorFor(selectedSession)}>{selectedSession.label} · PID {selectedSession.pid}</Text>
+          <Text bold color={colorFor(selectedSession)}>{selectedSession.label} — PID {selectedSession.pid}</Text>
           <Text>状态：{selectedSession.protected ? '正常浏览器（受保护）' : '可关闭的自动化会话'}</Text>
           <Text>来源：{selectedSession.source}；原因：{selectedSession.reason}</Text>
           <Text>配置：{shortPath(selectedSession.userDataDir)}{selectedSession.profile ? ` / ${selectedSession.profile}` : ''}</Text>
@@ -170,7 +173,7 @@ export function App(): React.ReactElement {
         ) : (
           <Text color="gray">{message}</Text>
         )}
-        <Text dimColor>↑/↓ j/k 选择 · Enter/d 详情 · m 合并窗口 · x 关闭 · X 强制 · a 全部自动化 · A 全部强制 · r 刷新 · q 退出</Text>
+        <Text dimColor>↑/↓ j/k 选择 | Enter/d 详情 | m 合并窗口 | x 关闭 | X 强制 | a 全部自动化 | A 全部强制 | r 刷新 | q 退出</Text>
       </Box>
     </Box>
   );

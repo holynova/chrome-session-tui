@@ -1,6 +1,6 @@
 {
   "name": "chrome-session-tui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "A small macOS TUI for inspecting and closing Chrome automation sessions.",

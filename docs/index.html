@@ -18,7 +18,7 @@
       * { box-sizing: border-box; }
       body { margin: 0; background: radial-gradient(circle at 80% 0%, #203847 0, var(--bg) 42rem); color: var(--text); font: 16px/1.7 -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif; }
       main { width: min(1080px, calc(100% - 40px)); margin: 0 auto; padding: 72px 0 80px; }
-      .eyebrow { color: var(--cyan); font: 700 13px/1.2 SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; }
+      .eyebrow { color: var(--cyan); font: 700 14px/1.2 SFMono-Regular, Menlo, monospace; letter-spacing: .14em; }
       h1 { max-width: 760px; margin: 18px 0 12px; font-size: clamp(42px, 8vw, 82px); line-height: .98; letter-spacing: -.06em; }
       .lead { max-width: 660px; color: var(--muted); font-size: 20px; }
       .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 54px; }
@@ -31,15 +31,20 @@
       .card strong { display: block; margin-bottom: 6px; color: var(--cyan); }
       .card p { margin: 0; color: var(--muted); }
       .install { margin-top: 56px; padding: 24px; border-left: 3px solid var(--yellow); background: var(--panel); }
-      pre { overflow: auto; margin: 14px 0 0; color: #dce8f0; font: 15px/1.8 SFMono-Regular, Menlo, monospace; }
+      pre { overflow: auto; margin: 14px 0 0; color: #dce8f0; font: 14px/1.8 SFMono-Regular, Menlo, monospace; }
+      .keys { margin-top: 56px; }
+      .keys h2 { margin: 0 0 14px; font-size: 20px; }
+      .keys table { width: 100%; border-collapse: collapse; color: var(--muted); }
+      .keys td { padding: 8px 12px 8px 0; border-top: 1px solid var(--line); vertical-align: top; }
+      .keys td:first-child { white-space: nowrap; color: var(--text); font-family: SFMono-Regular, Menlo, monospace; }
       footer { margin-top: 56px; color: var(--muted); font-size: 14px; }
       footer a { color: var(--cyan); }
-      @media (max-width: 720px) { main { width: min(100% - 28px, 600px); padding-top: 42px; } .grid { grid-template-columns: 1fr; } .lead { font-size: 18px; } }
+      @media (max-width: 720px) { main { width: min(100% - 28px, 600px); padding-top: 42px; } .grid { grid-template-columns: 1fr; } .lead { font-size: 16px; } }
     </style>
   </head>
   <body>
     <main>
-      <div class="eyebrow">macOS · Node.js · Ink</div>
+      <div class="eyebrow">macOS / Node.js / Ink</div>
       <h1>Chrome Session TUI</h1>
       <p class="lead">给 AI 测试场景准备的小型终端工具：把 Chrome 主会话和子进程聚合展示，识别自动化实例，并安全清理遗留进程。</p>
       <div class="actions">
@@ -54,12 +59,26 @@
       </section>
       <section class="install">
         <strong>快速开始</strong>
+        <p style="margin:8px 0 0;color:var(--muted)">需要 macOS 与 Node.js 22 或更高版本；先构建，再启动。</p>
         <pre>git clone https://github.com/holynova/chrome-session-tui.git
 cd chrome-session-tui
-pnpm install && pnpm --silent start
-# TUI 中按 m 可合并支持的窗口</pre>
+pnpm install
+pnpm build
+pnpm start</pre>
       </section>
-      <footer>Chrome Session TUI · <a href="https://github.com/holynova/chrome-session-tui">github.com/holynova/chrome-session-tui</a></footer>
+      <section class="keys" aria-label="常用按键">
+        <h2>常用按键</h2>
+        <table>
+          <tr><td>↑ / ↓ 或 j / k</td><td>选择会话</td></tr>
+          <tr><td>Enter / d</td><td>展开或收起详情</td></tr>
+          <tr><td>m</td><td>把该会话的窗口合并到第一个窗口</td></tr>
+          <tr><td>x / X</td><td>关闭 / 强制关闭选中的自动化会话（先确认）</td></tr>
+          <tr><td>a / A</td><td>关闭 / 强制关闭全部自动化会话（先确认）</td></tr>
+          <tr><td>r</td><td>立即刷新</td></tr>
+          <tr><td>q</td><td>退出</td></tr>
+        </table>
+      </section>
+      <footer>Chrome Session TUI — <a href="https://github.com/holynova/chrome-session-tui">github.com/holynova/chrome-session-tui</a></footer>
     </main>
   </body>
 </html>

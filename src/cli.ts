@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import process from 'node:process';
+import readline from 'node:readline';
 import {render} from 'ink';
 import React from 'react';
 import {App} from './ui.js';
@@ -14,12 +15,24 @@ function printHelp(): void {
   chrome-session list [--json]   列出当前 Chrome 主会话
   chrome-session inspect <pid>   查看一个会话的详细信息
   chrome-session merge <pid>     将可用会话的窗口合并到第一个窗口
-  chrome-session close --all     关闭自动化/Headless 会话
+  chrome-session close --all [--yes]  关闭全部自动化/Headless 会话（默认先确认）
   chrome-session close <pid>     关闭指定的自动化/Headless 会话
 
 close 默认发送 SIGTERM；加 --force 才会在短暂等待后发送 SIGKILL。
 正常 Chrome 会被保护，不会被这些命令关闭。
 `);
+}
+
+async function confirmCloseAll(count: number): Promise<boolean> {
+  const rl = readline.createInterface({input: process.stdin, output: process.stdout});
+  try {
+    const answer = await new Promise<string>((resolve) => {
+      rl.question(`确认关闭全部 ${count} 个自动化会话？输入 y 确认，其他任意键取消：`, resolve);
+    });
+    return answer.trim().toLowerCase() === 'y';
+  } finally {
+    rl.close();
+  }
 }
 
 function findSession(sessions: Awaited<ReturnType<typeof snapshotChromeSessions>>, value: string | undefined) {
@@ -62,6 +75,21 @@ async function runCli(args: string[]): Promise<void> {
   if (command === 'close') {
     const force = rest.includes('--force');
     if (rest.includes('--all')) {
+      const targets = sessions.filter((session) => !session.protected);
+      if (targets.length === 0) {
+        console.log('没有可关闭的自动化会话。');
+        return;
+      }
+      if (!rest.includes('--yes')) {
+        if (!process.stdin.isTTY) {
+          throw new Error(`将关闭 ${targets.length} 个自动化会话；非交互环境请加 --yes 确认。`);
+        }
+        const confirmed = await confirmCloseAll(targets.length);
+        if (!confirmed) {
+          console.log('已取消。');
+          return;
+        }
+      }
       const results = await closeAutomationSessions(sessions, {force});
       console.log(`已处理 ${results.length} 个自动化/Headless 会话。`);
       return;

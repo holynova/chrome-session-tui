@@ -12,10 +12,10 @@ export function formatDuration(seconds: number): string {
   const hours = Math.floor((seconds % 86400) / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const remainingSeconds = Math.floor(seconds % 60);
-  if (days > 0) return `${days}d ${hours}h`;
-  if (hours > 0) return `${hours}h ${minutes}m`;
-  if (minutes > 0) return `${minutes}m ${remainingSeconds}s`;
-  return `${remainingSeconds}s`;
+  if (days > 0) return `${days}天${hours}小时`;
+  if (hours > 0) return `${hours}小时${minutes}分钟`;
+  if (minutes > 0) return `${minutes}分${remainingSeconds}秒`;
+  return `${remainingSeconds}秒`;
 }
 
 export function formatKind(kind: SessionKind): string {
@@ -127,12 +127,12 @@ export function formatSessionPrimaryRow(session: ChromeSession, selected = false
 }
 
 export function formatSessionSecondaryRow(session: ChromeSession, availableWidth = 100): string {
-  const label = `${session.label} · ${inspectionLabel(session)}`;
+  const label = `${session.label} — ${inspectionLabel(session)}`;
   return `  └─ ${truncateToWidth(label, Math.max(0, availableWidth - 6))}`;
 }
 
 export function formatTable(sessions: ChromeSession[], availableWidth = 100): string {
-  if (sessions.length === 0) return '没有发现 Chrome 浏览器主会话。';
+  if (sessions.length === 0) return '没有发现 Chrome 浏览器主会话。请先打开 Chrome，或确认终端有权查看进程。';
   const lines = [formatTableHeader(availableWidth)];
   for (const session of sessions) {
     lines.push(formatSessionPrimaryRow(session, false, availableWidth));
@@ -144,5 +144,5 @@ export function formatTable(sessions: ChromeSession[], availableWidth = 100): st
 export function formatWindowSummary(session: ChromeSession): string {
   const windows = session.windowCount === null ? '—' : String(session.windowCount);
   const tabs = session.tabCount === null ? '—' : String(session.tabCount);
-  return `${windows} 窗口 · ${tabs} Tab`;
+  return `${windows} 个窗口、${tabs} 个 Tab`;
 }

@@ -269,12 +269,12 @@ async function inspectWithAppleScript(session: ChromeSession): Promise<WindowSta
     return {
       ...stats,
       windowInspection: 'applescript',
-      windowInspectionMessage: `AppleScript · ${appName}`,
+      windowInspectionMessage: `AppleScript（${appName}）`,
       canMergeWindows: true,
     };
   } catch (error) {
     const detail = error instanceof Error ? error.message.split('\n')[0] : String(error);
-    return errorWindowStats(`无法读取 ${appName}，可能需要自动化权限：${detail}`);
+    return errorWindowStats(`无法读取 ${appName}，可能需要在「系统设置 → 隐私与安全性 → 自动化」里允许终端控制 Chrome：${detail}`);
   }
 }
 
@@ -350,7 +350,7 @@ async function inspectWithCdp(port: number): Promise<WindowStats> {
       windowCount: validWindowIds.length === pageTargets.length ? new Set(validWindowIds).size : null,
       tabCount: pageTargets.length,
       windowInspection: 'cdp',
-      windowInspectionMessage: `CDP · 127.0.0.1:${port}`,
+      windowInspectionMessage: `CDP 127.0.0.1:${port}`,
       canMergeWindows: false,
     };
   } finally {
@@ -410,7 +410,7 @@ export async function mergeSessionWindows(session: ChromeSession): Promise<Windo
     return {
       ...stats,
       windowInspection: 'applescript',
-      windowInspectionMessage: `AppleScript · ${appName}`,
+      windowInspectionMessage: `AppleScript（${appName}）`,
       canMergeWindows: true,
     };
   } catch (error) {
