@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="360" viewBox="0 0 1200 360"
+     role="img" aria-labelledby="title desc">
+  <title id="title">Chrome Session TUI — macOS Chrome 自动化会话管理终端工具</title>
+  <desc id="desc">深色终端风标题：Chrome Session TUI，副标题看清每一个 Chrome 会话，安全清理自动化残留；右侧是终端窗口示意，一行黄色自动化会话可关闭，一行绿色正常 Chrome 受保护。</desc>
+
+  <g id="bg">
+    <rect width="1200" height="360" rx="26" fill="#0d141b"/>
+    <rect x="0" y="0" width="1200" height="360" rx="26" fill="none" stroke="#2d3c49" stroke-width="2"/>
+  </g>
+
+  <g id="title-block" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+    <text x="56" y="62" font-size="19" letter-spacing="3" fill="#70d7ff">macOS · NODE.JS · INK TUI</text>
+    <text x="56" y="130" font-size="58" font-weight="700" fill="#e7edf3">Chrome Session TUI</text>
+    <text x="56" y="172" font-size="23" fill="#e7edf3">看清每一个 Chrome 会话，安全清理自动化残留</text>
+    <text x="56" y="208" font-size="19" fill="#8d9aaa">聚合主会话与子进程，识别 Playwright / Puppeteer / Headless。</text>
+    <g id="chips" font-size="18" fill="#e7edf3" text-anchor="middle">
+      <g><rect x="56" y="238" width="150" height="36" rx="18" fill="#131e27" stroke="#2d3c49" stroke-width="1.5"/><text x="131" y="262">2 秒自动刷新</text></g>
+      <g><rect x="218" y="238" width="150" height="36" rx="18" fill="#131e27" stroke="#2d3c49" stroke-width="1.5"/><text x="293" y="262">窗口合并</text></g>
+      <g><rect x="380" y="238" width="186" height="36" rx="18" fill="#131e27" stroke="#2d3c49" stroke-width="1.5"/><text x="473" y="262">SIGTERM 安全关闭</text></g>
+    </g>
+  </g>
+
+  <g id="terminal" font-family="SFMono-Regular, Menlo, monospace">
+    <g id="term-window">
+      <rect x="700" y="56" width="444" height="248" rx="14" fill="#101820" stroke="#334252" stroke-width="2"/>
+      <circle cx="728" cy="80" r="7" fill="#ff5f57"/>
+      <circle cx="752" cy="80" r="7" fill="#febc2e"/>
+      <circle cx="776" cy="80" r="7" fill="#28c840"/>
+      <text x="922" y="86" font-size="16" fill="#8d9aaa" text-anchor="middle">chrome-session</text>
+      <rect x="716" y="100" width="412" height="2" fill="#293745"/>
+    </g>
+    <g id="term-rows" font-size="18">
+      <text x="724" y="132" fill="#70d7ff" font-weight="700">Chrome Session TUI</text>
+      <text x="1120" y="132" fill="#d4dde7" text-anchor="end">2 个主会话</text>
+      <text x="724" y="168" fill="#d1b266">▸ AI/自动化  20327   2 窗口  11 Tab</text>
+      <text x="724" y="192" fill="#7e8b9a" font-size="16">  └─ DevTools 自动化 · CDP · 可关闭</text>
+      <text x="724" y="228" fill="#8be28b">  正常        89721   1 窗口   1 Tab</text>
+      <text x="724" y="252" fill="#7e8b9a" font-size="16">  └─ 正常 Chrome · AppleScript · 保护</text>
+      <text x="724" y="286" fill="#7e8b9a" font-size="16">↑/↓ 选择 · x 关闭 · m 合并 · q 退出</text>
+    </g>
+  </g>
+</svg>
