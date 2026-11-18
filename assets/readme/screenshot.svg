@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Chrome Session TUI screenshot</title>
+  <desc id="desc">A terminal interface showing normal and automation Chrome sessions.</desc>
+  <rect width="1200" height="720" rx="24" fill="#0f1720"/>
+  <rect x="30" y="30" width="1140" height="660" rx="16" fill="#101820" stroke="#334252" stroke-width="2"/>
+  <circle cx="62" cy="63" r="8" fill="#ff5f57"/>
+  <circle cx="89" cy="63" r="8" fill="#febc2e"/>
+  <circle cx="116" cy="63" r="8" fill="#28c840"/>
+  <text x="600" y="70" fill="#8d9aaa" font-family="SFMono-Regular,Menlo,monospace" font-size="18" text-anchor="middle">chrome-session-tui</text>
+  <g font-family="SFMono-Regular,Menlo,monospace">
+    <text x="76" y="125" fill="#70d7ff" font-size="28" font-weight="700">Chrome Session TUI</text>
+    <text x="1125" y="125" fill="#d4dde7" font-size="22" text-anchor="end">2 个主会话</text>
+    <text x="76" y="162" fill="#7e8b9a" font-size="17">只显示 Chrome 主会话；Renderer/GPU/Utility 子进程会合并到所属会话。</text>
+    <text x="78" y="205" fill="#7e8b9a" font-size="18">类型            PID     窗口      Tab        RSS      CPU      进程  状态</text>
+    <text x="78" y="245" fill="#d1b266" font-size="21">▸ AI/自动化      20327        2       11     571 MB     0.0%         6  可关闭</text>
+    <text x="78" y="276" fill="#7e8b9a" font-size="17">  └─ Chrome DevTools 自动化 · CDP，只读</text>
+    <text x="78" y="316" fill="#8be28b" font-size="21">  正常            89721        1        1    4326 MB    21.5%        36  保护</text>
+    <text x="78" y="347" fill="#7e8b9a" font-size="17">  └─ 正常 Chrome · AppleScript，可合并</text>
+    <g><rect x="70" y="382" width="1060" height="2" fill="#293745"/></g>
+    <text x="78" y="430" fill="#70d7ff" font-size="20" font-weight="700">Chrome DevTools 自动化 · PID 20327</text>
+    <text x="78" y="470" fill="#d4dde7" font-size="18">状态：可关闭的自动化会话</text>
+    <text x="78" y="505" fill="#d4dde7" font-size="18">窗口与 Tab：2 窗口 · 11 Tab；读取：CDP · 127.0.0.1:9222</text>
+    <text x="78" y="540" fill="#d4dde7" font-size="18">运行：30m 19s；内存：571.0 MB；CPU：0.0%</text>
+    <text x="78" y="575" fill="#d4dde7" font-size="18">进程：6 个；父 PID：16807；控制器 PID：16807</text>
+    <text x="78" y="635" fill="#7e8b9a" font-size="17">↑/↓ j/k 选择 · Enter/d 详情 · m 合并窗口 · x 关闭 · a 全部自动化 · q 退出</text>
+  </g>
+</svg>
